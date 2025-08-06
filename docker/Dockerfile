@@ -1,52 +1,46 @@
-# استخدام صورة PHP 8.3 الرسمية كأساس، مع FPM (FastCGI Process Manager)
+# Use the official PHP 8.3 image as a base
 FROM php:8.3-fpm
 
-# تعيين مجلد العمل الافتراضي داخل الحاوية
+# Set the working directory
 WORKDIR /var/www
 
-# تثبيت الاعتماديات الأساسية التي يحتاجها النظام ومكتبات PHP
+# Install system dependencies required for Laravel and Node.js
 RUN apt-get update && apt-get install -y \
     build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
     git \
     curl \
+    libpng-dev \
     libonig-dev \
     libxml2-dev \
+    zip \
+    unzip \
     libzip-dev \
-    # إضافة مكتبات ضرورية لقاعدة البيانات
     libpq-dev \
-    # إضافة مكتبات ضرورية للتعامل مع الصور (GD)
-    libgd-dev
+    libgd-dev \
+    # Dependencies for NodeSource repository
+    ca-certificates \
+    gnupg
 
-# تنظيف الكاش بعد التثبيت لتقليل حجم الصورة
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# تثبيت إضافات PHP الضرورية لتشغيل Laravel
+# Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# تثبيت Composer (مدير الحزم الخاص بـ PHP) على مستوى النظام
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# إنشاء مستخدم جديد باسم 'sail' (يمكنك استخدام أي اسم) لتجنب تشغيل الأوامر بصلاحيات root
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+# Install Node.js (LTS version) and npm
+RUN mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+RUN apt-get update && apt-get install -y nodejs
 
-# تغيير ملكية مجلد العمل للمستخدم الجديد
-RUN chown -R www:www /var/www
+# Create a non-root user to run the application
+RUN useradd -ms /bin/bash -u 1000 www
 
-# تبديل المستخدم إلى المستخدم الجديد
+# Switch to the new user
 USER www
 
-# كشف المنفذ 8000 الذي سيستخدمه خادم Laravel Artisan
-EXPOSE 8000
+# Expose port for Vite dev server
+EXPOSE 5173
 
-# الأمر الافتراضي الذي سيتم تشغيله عند بدء تشغيل الحاوية
-# في هذه المرحلة، سنبقيه بسيطًا. سيقوم Laravel Sail لاحقًا بتجاوز هذا الأمر.
+# The main command to run when the container starts
 CMD ["php-fpm"]

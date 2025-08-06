@@ -1,75 +1,48 @@
-
-# تعريف الشبكة الداخلية التي ستربط بين جميع خدماتنا
-# هذا يضمن أن الحاويات يمكنها التواصل مع بعضها باستخدام أسماء الخدمات (مثل 'app', 'db')
-networks:
-  main_network:
-    driver: bridge
-
-# تعريف الخدمات (الحاويات) التي يتكون منها تطبيقنا
 services:
-  # 1. خدمة التطبيق الرئيسية (Laravel)
   app:
     build:
-      # سياق البناء: المجلد الحالي '.'
       context: .
-      # ملف Dockerfile الذي سيتم استخدامه لبناء هذه الصورة
       dockerfile: docker/Dockerfile
-    image: professional-platform/app # اسم الصورة التي سيتم بناؤها
-    container_name: platform_app # اسم مخصص للحاوية لتسهيل التعرف عليها
-    restart: unless-stopped # إعادة تشغيل الحاوية تلقائيًا إلا إذا تم إيقافها يدويًا
-    tty: true # تخصيص TTY، ضروري لبعض العمليات
-    environment:
-      # متغيرات البيئة التي سيتم تمريرها إلى الحاوية
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www # تحديد مجلد العمل الافتراضي داخل الحاوية
+    container_name: platform_app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
     volumes:
-      # ربط مجلد المشروع الحالي على جهازك مع مجلد العمل داخل الحاوية
-      # هذا يسمح لك بتعديل الكود مباشرة ورؤية التغييرات فورًا
       - ./:/var/www
-    networks:
-      # ربط الحاوية بالشبكة الرئيسية
-      - main_network
     ports:
-      # ربط المنفذ 8000 على جهازك بالمنفذ 8000 داخل الحاوية (الذي سيشغل عليه خادم Laravel)
-      - "8000:8000"
-    # *** الإضافة الجديدة ***
-    # هذا يضمن أن حاوية 'app' لن تبدأ إلا بعد أن تكون حاوية 'db' في حالة صحية
+      - "8000:8000" # For artisan serve
+      - "5173:5173" # For Vite
+    networks:
+      - main_network
     depends_on:
       db:
         condition: service_healthy
 
-  # 2. خدمة قاعدة البيانات (MySQL)
   db:
-    image: mysql:8.0 # استخدام صورة MySQL الرسمية بإصدار 8.0
-    container_name: platform_db # اسم مخصص للحاوية
+    image: mysql:8.0
+    container_name: platform_db
     restart: unless-stopped
-    tty: true
     ports:
-      # ربط المنفذ 3306 على جهازك بالمنفذ 3306 داخل الحاوية
       - "3306:3306"
     environment:
-      # متغيرات البيئة لـ MySQL
-      MYSQL_DATABASE: professional_platform_db # اسم قاعدة البيانات التي سيتم إنشاؤها
-      MYSQL_USER: db_user # اسم المستخدم
-      MYSQL_PASSWORD: db_password # كلمة المرور للمستخدم
-      MYSQL_ROOT_PASSWORD: root_password # كلمة مرور المستخدم الجذر (root)
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
-      # هذا المجلد سيحتفظ ببيانات قاعدة البيانات بشكل دائم حتى لو تم حذف الحاوية وإعادة إنشائها
       - dbdata:/var/lib/mysql
     networks:
       - main_network
-    # *** الإضافة الجديدة ***
-    # فحص صحة الخدمة: يقوم بفحص دوري للتأكد من أن MySQL جاهز لاستقبال الاتصالات
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
 
-# تعريف الـ Volumes لضمان استمرارية البيانات
+networks:
+  main_network:
+    driver: bridge
+
 volumes:
   dbdata:
     driver: local
