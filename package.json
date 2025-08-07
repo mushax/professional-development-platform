@@ -5,7 +5,9 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "tailwind:init": "tailwindcss init -p"
+        "tailwind:init": "tailwindcss init -p",
+        "start": "concurrently \"php artisan serve --host=0.0.0.0\" \"npm run dev\""
+
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

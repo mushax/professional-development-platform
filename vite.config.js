@@ -8,4 +8,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // --- الإضافة الجديدة ---
+    server: {
+        host: '0.0.0.0', // اجعل الخادم يستمع على جميع الشبكات
+        port: 5173,      // المنفذ الذي يعمل عليه Vite
+        hmr: {
+            host: 'localhost', // أخبر المتصفح أن يتصل بـ localhost
+        },
+    },
 });
