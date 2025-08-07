@@ -1,22 +1,26 @@
-<?php
-return [
-    'welcome_message' => 'أهلاً بك في منصة التطوير المهني المتكاملة!',
-    'Welcome back' => 'أهلاً بعودتك',
-    "You are logged in. Let's build your professional future." => "لقد سجلت دخولك. هيا نبني مستقبلك المهني.",
-    'Create and manage your CVs' => 'أنشئ وعدّل سيرتك الذاتية',
-    'Opportunity Hub' => 'بوابة الفرص',
-    'Coming Soon' => 'قريباً',
-    'My Profile' => 'ملفي الشخصي',
-    'Update your account details' => 'حدّث بيانات حسابك',
-    'Build Your Future, Today.' => 'ابنِ مستقبلك، اليوم.',
-    'The integrated ecosystem for job seekers, companies, and educational providers. Your professional journey starts here.' => 'النظام المتكامل للباحثين عن الفرص، الشركات، ومقدمي الخدمات التعليمية. رحلتك المهنية تبدأ هنا.',
-    'Get Started' => 'ابدأ الآن',
-    'Our Core Features' => 'مميزاتنا الأساسية',
-    'Tools designed for your success.' => 'أدوات مصممة لنجاحك.',
-    'AI CV Builder' => 'باني السيرة الذاتية الذكي',
-    'Create professional, ATS-friendly CVs with the power of AI.' => 'أنشئ سيرة ذاتية احترافية ومتوافقة مع أنظمة الفرز بمساعدة الذكاء الاصطناعي.',
-    'Access a curated list of jobs, scholarships, and courses.' => 'اطلع على قائمة منسقة من الوظائف، المنح، والدورات.',
-    'Partner Portal' => 'بوابة الشركاء',
-    'A dedicated dashboard for companies and universities to manage opportunities.' => 'لوحة تحكم مخصصة للشركات والجامعات لإدارة الفرص.',
-    'All rights reserved.' => 'جميع الحقوق محفوظة.'
-];
+    <?php
+
+    return [
+        'welcome_message' => 'أهلاً بك في منصة التطوير المهني المتكاملة!',
+        'welcome_back' => 'أهلاً بعودتك',
+        'dashboard_intro' => "لقد سجلت دخولك. هيا نبني مستقبلك المهني.",
+        'cv_builder_title' => 'باني السيرة الذاتية',
+        'cv_builder_description' => 'أنشئ وعدّل سيرتك الذاتية',
+        'opportunity_hub_title' => 'بوابة الفرص',
+        'coming_soon' => 'قريباً',
+        'my_profile_title' => 'ملفي الشخصي',
+        'my_profile_description' => 'حدّث بيانات حسابك',
+        'main_page_title' => 'ابنِ مستقبلك، اليوم.',
+        'main_page_subtitle' => 'النظام المتكامل للباحثين عن الفرص، الشركات، ومقدمي الخدمات التعليمية. رحلتك المهنية تبدأ هنا.',
+        'get_started' => 'ابدأ الآن',
+        'features_title' => 'مميزاتنا الأساسية',
+        'features_subtitle' => 'أدوات مصممة لنجاحك.',
+        'feature_cv_builder_desc' => 'أنشئ سيرة ذاتية احترافية ومتوافقة مع أنظمة الفرز بمساعدة الذكاء الاصطناعي.',
+        'feature_opportunity_hub_desc' => 'اطلع على قائمة منسقة من الوظائف، المنح، والدورات.',
+        'feature_partner_portal_title' => 'بوابة الشركاء',
+        'feature_partner_portal_desc' => 'لوحة تحكم مخصصة للشركات والجامعات لإدارة الفرص.',
+        'all_rights_reserved' => 'جميع الحقوق محفوظة.',
+        'dashboard' => 'لوحة التحكم',
+        'login' => 'تسجيل الدخول',
+        'register' => 'إنشاء حساب',
+    ];

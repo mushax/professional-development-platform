@@ -77,8 +77,9 @@ return [
     | set to any locale for which you plan to have translation strings.
     |
     */
+    'available_locales' => ['en', 'ar'],
 
-    'locale' => env('APP_LOCALE', 'ar'),
+    'locale' => env('APP_LOCALE', 'en'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 

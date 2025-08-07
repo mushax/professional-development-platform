@@ -2,14 +2,17 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CvBuilderController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -19,4 +22,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

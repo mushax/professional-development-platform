@@ -26,5 +26,13 @@
                 {{ $slot }}
             </div>
         </div>
+
+        <!-- Fixed Bottom Control Bar -->
+        <footer class="fixed bottom-0 left-0 right-0 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700 p-4">
+            <div class="flex justify-center items-center gap-4">
+                <x-language-switcher />
+                <x-dark-mode-switcher />
+            </div>
+        </footer>
     </body>
 </html>

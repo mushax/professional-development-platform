@@ -9,6 +9,8 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
+      - /var/www/node_modules
+      - /var/www/vendor
     ports:
       - "8000:8000" # For artisan serve
       - "5173:5173" # For Vite
