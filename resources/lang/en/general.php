@@ -1,2 +1,23 @@
 <?php
-return ['welcome_message' => 'Welcome to the Integrated Professional Development Platform!'];
+return [
+    'welcome_message' => 'Welcome to the Integrated Professional Development Platform!',
+    'Welcome back' => 'Welcome back',
+    "You are logged in. Let's build your professional future." => "You are logged in. Let's build your professional future.",
+    'Create and manage your CVs' => 'Create and manage your CVs',
+    'Opportunity Hub' => 'Opportunity Hub',
+    'Coming Soon' => 'Coming Soon',
+    'My Profile' => 'My Profile',
+    'Update your account details' => 'Update your account details',
+    'Build Your Future, Today.' => 'Build Your Future, Today.',
+    'The integrated ecosystem for job seekers, companies, and educational providers. Your professional journey starts here.' => 'The integrated ecosystem for job seekers, companies, and educational providers. Your professional journey starts here.',
+    'Get Started' => 'Get Started',
+    'Our Core Features' => 'Our Core Features',
+    'Tools designed for your success.' => 'Tools designed for your success.',
+    'AI CV Builder' => 'AI CV Builder',
+    'Create professional, ATS-friendly CVs with the power of AI.' => 'Create professional, ATS-friendly CVs with the power of AI.',
+    'Opportunity Hub' => 'Opportunity Hub',
+    'Access a curated list of jobs, scholarships, and courses.' => 'Access a curated list of jobs, scholarships, and courses.',
+    'Partner Portal' => 'Partner Portal',
+    'A dedicated dashboard for companies and universities to manage opportunities.' => 'A dedicated dashboard for companies and universities to manage opportunities.',
+    'All rights reserved.' => 'All rights reserved.',
+];
