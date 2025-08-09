@@ -23,4 +23,10 @@
         'dashboard' => 'لوحة التحكم',
         'login' => 'تسجيل الدخول',
         'register' => 'إنشاء حساب',
+        'personal_information' => 'المعلومات الشخصية',
+        'full_name' => 'الاسم الكامل',
+        'phone_number' => 'رقم الهاتف',
+        'address' => 'العنوان',
+        'professional_experience' => 'الخبرة المهنية',
+        'Your professional experience will appear here.' => 'ستظهر خبرتك المهنية هنا.',
     ];

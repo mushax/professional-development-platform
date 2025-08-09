@@ -23,4 +23,10 @@
         'dashboard' => 'Dashboard',
         'login' => 'Log in',
         'register' => 'Register',
+        'personal_information' => 'Personal Information',
+        'full_name' => 'Full Name',
+        'phone_number' => 'Phone Number',
+        'address' => 'Address',
+        'professional_experience' => 'Professional Experience',
+        'Your professional experience will appear here.' => 'Your professional experience will appear here.',
     ];
